@@ -1,0 +1,87 @@
+# IMPORTANT: Replace YOUR_GITHUB_USERNAME/YOUR_REPO_NAME below with the GitHub repository
+# where you publish this website. Keep branch: main if your default branch is main.
+backend:
+  name: git-gateway
+  branch: main
+
+# Netlify Identity + Git Gateway must be enabled in your Netlify site settings.
+media_folder: "uploads"
+public_folder: "/uploads"
+
+publish_mode: editorial_workflow
+
+collections:
+  - name: "events"
+    label: "Events"
+    files:
+      - name: "events_list"
+        label: "Upcoming Events"
+        file: "content/events.json"
+        format: "json"
+        fields:
+          - label: "Events"
+            name: "items"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Event title (optional if flyer has the title)", name: "title", widget: "string", required: false, default: "Upcoming Ride" }
+              - { label: "Event flyer (upload an image)", name: "flyer", widget: "image", required: false, hint: "Upload a JPG, PNG, or WebP flyer. You can use a flyer by itself or add typed details too." }
+              - { label: "Date", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, required: false }
+              - { label: "Time", name: "time", widget: "string", required: false, hint: "Example: 10:00 AM – 4:00 PM" }
+              - { label: "Date label (optional)", name: "dateLabel", widget: "string", required: false, hint: "Example: SATURDAY • MAY 16" }
+              - { label: "Location", name: "location", widget: "string", required: false }
+              - { label: "Description / extra details", name: "description", widget: "text", required: false }
+              - { label: "Event details link", name: "link", widget: "string", required: false }
+              - { label: "Published", name: "published", widget: "boolean", default: true }
+
+  - name: "content"
+    label: "Videos & Podcast"
+    files:
+      - name: "content_list"
+        label: "Content Links"
+        file: "content/content.json"
+        format: "json"
+        fields:
+          - label: "Content"
+            name: "items"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Type", name: "type", widget: "select", options: ["YouTube Video", "Podcast", "Ride Edit", "Shorts", "Other"] }
+              - { label: "Description", name: "description", widget: "text", required: false }
+              - { label: "Content URL", name: "url", widget: "string" }
+              - { label: "Thumbnail image", name: "image", widget: "image", required: false }
+              - { label: "Published", name: "published", widget: "boolean", default: true }
+
+  - name: "gallery"
+    label: "Photo Gallery"
+    files:
+      - name: "gallery_list"
+        label: "Gallery Photos"
+        file: "content/gallery.json"
+        format: "json"
+        fields:
+          - label: "Photos"
+            name: "items"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Photo", name: "image", widget: "image" }
+              - { label: "Caption", name: "caption", widget: "string", required: false }
+              - { label: "Alt text", name: "alt", widget: "string", required: false }
+
+  - name: "settings"
+    label: "Website Settings"
+    files:
+      - name: "social_settings"
+        label: "Social Links & Intro"
+        file: "content/settings.json"
+        format: "json"
+        fields:
+          - { label: "Homepage intro line", name: "tagline", widget: "string" }
+          - { label: "YouTube URL", name: "youtube", widget: "string", required: false }
+          - { label: "Instagram URL", name: "instagram", widget: "string", required: false }
+          - { label: "Facebook URL", name: "facebook", widget: "string", required: false }
+          - { label: "TikTok URL", name: "tiktok", widget: "string", required: false }
+          - { label: "Podcast URL", name: "podcast", widget: "string", required: false }
