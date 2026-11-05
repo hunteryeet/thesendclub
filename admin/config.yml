@@ -85,4 +85,3 @@ collections:
           - { label: "Facebook URL", name: "facebook", widget: "string", required: false }
           - { label: "TikTok URL", name: "tiktok", widget: "string", required: false }
           - { label: "Podcast URL", name: "podcast", widget: "string", required: false }
-
